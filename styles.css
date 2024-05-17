@@ -1,0 +1,71 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #121212; /* Alterado para um tema escuro */
+  color: #fff; /* Alterado para texto branco */
+}
+
+.container {
+  width: 90%;
+  max-width: 600px;
+  background-color: #1e1e1e;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  margin: 20px auto; /* Adicione 'auto' para centralizar horizontalmente */
+}
+
+
+h1 {
+  text-align: center;
+  color: #25D366; /* Alterado para azul claro */
+}
+
+textarea {
+  width: calc(100% - 40px);
+  min-height: 100px; /* Defini uma altura mínima para o textarea */
+  border-radius: 5px;
+  border: none;
+  padding: 10px;
+  font-size: 16px;
+  background-color: #272727; /* Alterado para um tom de cinza mais escuro */
+  margin-bottom: 20px;
+  color: #fff; /* Alterado para texto branco */
+}
+
+#message {
+  background-color: #272727; /* Alterado para um tom de cinza mais escuro */
+  color: #fff; /* Alterado para texto branco */
+  border: 1px solid #444; /* Alterado para um tom de cinza mais escuro */
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 16px;
+  width: calc(100% - 40px);
+  min-height: 100px; /* Defini uma altura mínima para o textarea */
+  margin-bottom: 20px;
+}
+
+button {
+  width: 100%;
+  background-color: #25D366; /* Alterado para azul claro */
+  color: #000000;
+  border: none;
+  border-radius: 5px;
+  padding: 15px; /* Aumentado o padding para melhorar a usabilidade em dispositivos móveis */
+  cursor: pointer;
+  font-size: 16px;
+}
+
+#links {
+  background-color: #333; /* Alterado para um tom de cinza escuro */
+  padding: 20px;
+  border-radius: 5px;
+}
+
+#links a {
+  display: block;
+  margin-bottom: 10px;
+  text-decoration: none;
+  color: #25D366; /* Alterado para azul claro */
+}
