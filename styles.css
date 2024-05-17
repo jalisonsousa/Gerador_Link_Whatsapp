@@ -23,7 +23,7 @@ h1 {
 }
 
 textarea {
-  width: calc(100% - 40px);
+  width: calc(100% - 23px);
   min-height: 100px; /* Defini uma altura mínima para o textarea */
   border-radius: 5px;
   border: none;
@@ -41,7 +41,7 @@ textarea {
   border-radius: 5px;
   padding: 10px;
   font-size: 16px;
-  width: calc(100% - 40px);
+  width: calc(100% - 23px);
   min-height: 100px; /* Defini uma altura mínima para o textarea */
   margin-bottom: 20px;
 }
