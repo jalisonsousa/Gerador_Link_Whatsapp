@@ -49,7 +49,7 @@ function formatNumbers() {
 
 function copyLinks() {
     var links = document.getElementById('links').getElementsByTagName('a');
-    var textToCopy = Array.from(links).map(link => link.href).join('\n');
+    var textToCopy = Array.from(links).map(link => link.href).join('\n\n');
 
     var tempTextArea = document.createElement('textarea');
     tempTextArea.value = textToCopy;
