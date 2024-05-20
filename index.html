@@ -15,7 +15,17 @@ ex: 9212345678"></textarea>
         <textarea id="message" placeholder="Insira uma mensagem padrão aqui."></textarea>
         <button onclick="formatNumbers()">Gerar Link</button>
         <div id="links"></div>
+        <button id="copyButton" onclick="copyLinks()" style="display: none;">Copiar Links</button>
     </div>
+
+    <!-- Modal para alertas -->
+    <div id="alertModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeAlertModal()">&times;</span>
+            <p id="modalMessage"></p>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
