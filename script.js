@@ -64,7 +64,17 @@ function formatNumbers() {
 
 function copyLinks() {
     var links = document.getElementById('links').getElementsByTagName('a');
-    var textToCopy = Array.from(links).map(link => link.href).join('\n\n');
+    var linksArray = Array.from(links).map(link => link.href);
+    var textToCopy = '';
+
+    for (var i = 0; i < linksArray.length; i++) {
+        textToCopy += linksArray[i] + '\n\n';
+
+        // Adiciona uma linha de divisão a cada 12 links
+        if ((i + 1) % 12 === 0 && (i + 1) !== linksArray.length) {
+            textToCopy += '-----------------\n\n';
+        }
+    }
 
     var tempTextArea = document.createElement('textarea');
     tempTextArea.value = textToCopy;
@@ -73,7 +83,7 @@ function copyLinks() {
     document.execCommand('copy');
     document.body.removeChild(tempTextArea);
 
-    showAlert("Links copiados para a área de transferência!");
+    showAlert("Todos os links copiados para a área de transferência!, separado por lote de 12 ");
 }
 
 function showAlert(message) {
