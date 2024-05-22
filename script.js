@@ -8,28 +8,43 @@ function formatNumbers() {
     var hasValidNumbers = false;
     var invalidNumbers = [];
 
-    for (var i = 0; i < numbers.length; i++) {
-        var number = numbers[i].trim().replace(/-/g, '');
+    // Dividindo os números em lotes de 25 para processamento incremental
+    var batchSize = 25;
+    var batches = [];
+    for (var i = 0; i < numbers.length; i += batchSize) {
+        batches.push(numbers.slice(i, i + batchSize));
+    }
 
-        // Ignora entradas em branco e que não sejam apenas números
-        if (number === '' || /\D/.test(number)) {
-            if (number !== '') { // Adiciona à lista de inválidos se não estiver em branco
+    // Função para processar cada lote de números
+    function processBatch(batch) {
+        for (var i = 0; i < batch.length; i++) {
+            var number = batch[i].trim().replace(/-/g, '');
+
+            // Ignora entradas em branco e que não sejam apenas números
+            if (number === '' || /\D/.test(number)) {
+                if (number !== '') { // Adiciona à lista de inválidos se não estiver em branco
+                    invalidNumbers.push(number);
+                }
+                continue;
+            }
+
+            if (/^\d{9,}$/.test(number)) {
+                var link = document.createElement('a');
+                var fullNumber = '+55' + number;
+                link.href = 'https://wa.me/' + fullNumber + '?text=' + encodeURIComponent(message);
+                link.target = '_blank';
+                link.textContent = fullNumber;
+                links.appendChild(link);
+                hasValidNumbers = true;
+            } else {
                 invalidNumbers.push(number);
             }
-            continue;
         }
+    }
 
-        if (/^\d{9,}$/.test(number)) {
-            var link = document.createElement('a');
-            var fullNumber = '+55' + number;
-            link.href = 'https://wa.me/' + fullNumber + '?text=' + encodeURIComponent(message);
-            link.target = '_blank';
-            link.textContent = fullNumber;
-            links.appendChild(link);
-            hasValidNumbers = true;
-        } else {
-            invalidNumbers.push(number);
-        }
+    // Processa cada lote de números
+    for (var j = 0; j < batches.length; j++) {
+        processBatch(batches[j]);
     }
 
     if (hasValidNumbers) {
