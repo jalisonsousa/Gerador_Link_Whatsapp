@@ -1,221 +1,128 @@
 body {
-    background-color: #000; /* Fundo preto para o tema hacker */
-    color: #00ff00; /* Texto verde para o tema hacker */
-    font-family: 'Courier New', Courier, monospace; /* Fonte estilo terminal */
-    margin: 0;
-    padding: 0;
-}
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #121212;
+  color: #fff;
 
-.container {
-    width: 90%; /* Aumenta a largura do container em telas menores */
-    max-width: 1200px; /* Limita a largura máxima do container */
+  .container {
+    width: 90%;
+    max-width: 700px;
+    background-color: #1e1e1e;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    padding: 20px;
     margin: 20px auto;
+  }
+  
+  h1 {
     text-align: center;
-    position: relative; /* Necessário para o posicionamento dos ícones */
-}
-
-.header {
-    position: relative;
-    margin-bottom: 20px;
-}
-
-.header h1 {
-    font-size: 2em;
-    margin-bottom: 10px;
-    word-wrap: break-word; /* Quebra o texto longo */
-}
-
-/* Contêiner dos ícones de redes sociais */
-.social-icons {
-    display: flex;
-    justify-content: center; /* Centraliza os ícones horizontalmente */
-    flex-wrap: wrap; /* Permite que os ícones se movam para a linha seguinte em telas menores */
-    gap: 10px; /* Espaço entre os ícones */
-    margin-top: 20px; /* Espaço acima dos ícones */
-}
-
-/* Estilo dos ícones de redes sociais */
-.social-icons a {
-    color: #00ff00; /* Cor dos ícones */
-    font-size: 24px; /* Tamanho dos ícones */
-    text-decoration: none; /* Remove o sublinhado dos links */
-    transition: color 0.3s, transform 0.3s; /* Adiciona efeito de transição suave */
-}
-
-/* Efeito de hover para os ícones */
-.social-icons a:hover {
-    color: #00cc00; /* Cor dos ícones ao passar o mouse */
-    transform: scale(1.1); /* Aumenta o tamanho dos ícones ao passar o mouse */
-}
-
-/* Responsividade para telas menores */
-@media (max-width: 600px) {
-    .social-icons a {
-        font-size: 20px; /* Reduz o tamanho dos ícones em telas menores */
-    }
-    .header h1 {
-        font-size: 1.5em; /* Reduz o tamanho do título em telas menores */
-    }
-}
-
-@media (max-width: 400px) {
-    .social-icons a {
-        font-size: 18px; /* Reduz ainda mais o tamanho dos ícones em telas muito pequenas */
-    }
-    .header h1 {
-        font-size: 1.2em; /* Reduz ainda mais o tamanho do título */
-    }
-}
-
-.faq {
-    margin-top: 20px;
-}
-
-.language-selector {
-    display: flex;
-    justify-content: center; /* Centraliza os ícones horizontalmente */
-    gap: 10px; /* Espaço entre os ícones */
-    margin-top: 20px; /* Espaço acima do seletor */
-}
-
-.language-selector a {
-    display: block;
-    width: 30px; /* Largura dos ícones */
-    height: 32px; /* Altura dos ícones */
-    overflow: hidden; /* Garante que a imagem não ultrapasse os limites */
-    transition: transform 0.3s, border-color 0.3s; /* Adiciona efeitos de transição suaves */
-}
-
-.language-selector a img {
-    width: 100%; /* Ajusta a largura da imagem ao tamanho do link */
-    height: auto; /* Mantém a proporção da imagem */
-}
-
-.language-selector a:hover {
-    transform: scale(1.1); /* Aumenta o tamanho do ícone ao passar o mouse */
-    border-color: #00cc00; /* Altera a cor da borda ao passar o mouse */
-}
-
-.pergunta {
-    background-color: #111; /* Fundo escuro para contraste */
-    padding: 15px;
-    margin: 10px 0;
+    color: #25D366;
+  }
+  
+  textarea {
+    width: calc(100% - 23px);
+    height: 200px;
+    min-height: 100px;
     border-radius: 5px;
-    border: 1px solid #00ff00;
-    text-align: left;
-    transition: background-color 0.3s, border-color 0.3s; /* Transição suave para os efeitos de hover */
-    word-wrap: break-word; /* Quebra o texto longo */
-}
-
-.pergunta h3 {
-    margin: 0;
-    font-size: 1.5em; /* Ajusta o tamanho da fonte das perguntas */
-}
-
-.resposta {
-    margin-top: 10px;
-    padding-left: 20px;
-    font-size: 1em; /* Ajusta o tamanho da fonte das respostas */
-}
-
-#searchInput {
+    border: 1px solid #444;
     padding: 10px;
-    margin: 25px 0;
-    border: 1px solid #00ff00;
+    font-size: 16px;
+    background-color: #272727;
+    margin-bottom: 20px;
+    color: #fff;
+  }
+  
+  #message {
+    background-color: #272727;
+    color: #fff;
+    border: 1px solid #444;
     border-radius: 5px;
-    background-color: #111; /* Fundo escuro */
-    color: #00ff00; /* Texto verde */
-    font-family: 'Courier New', Courier, monospace;
-    width: 100%; /* Ocupa toda a largura do container em telas menores */
-    box-sizing: border-box; /* Inclui padding e border no tamanho total */
-    text-align: center;
-}
-
-footer {
-    background-color: #111; /* Fundo escuro para o rodapé */
-    color: #00ff00; /* Texto verde */
-    padding: 30px 0; /* Aumenta o padding para adicionar mais espaço */
-    text-align: center;
-    border-top: 1px solid #00ff00;
-    margin-top: 40px;
-}
-
-/* Responsividade do rodapé */
-footer p {
-    margin: 20px 0; /* Adiciona mais espaço entre os elementos do rodapé */
-    word-break: break-word; /* Quebra palavras longas */
-    overflow-wrap: break-word; /* Quebra palavras longas e evita que o texto ultrapasse o contêiner */
-}
-
-.contact-button {
-    color: #00ff00;
-    background-color: #222; /* Fundo escuro para o botão */
-    border: 1px solid #00ff00;
-    padding: 10px 20px;
+    padding: 10px;
+    font-size: 16px;
+    width: calc(100% - 23px);
+    height: 1px;
+    min-height: 100px;
+    margin-bottom: 20px;
+  }
+  
+  button {
+    width: 100%;
+    background-color: #25D366;
+    color: #000000;
+    border: none;
     border-radius: 5px;
+    padding: 15px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  #links {
+    background-color: #333;
+    padding: 20px;
+    border-radius: 5px;
+  }
+  
+  #links a {
+    display: block;
+    margin-bottom: 10px;
     text-decoration: none;
+    color: #25D366;
+  }
+  
+  #copyButton {
+    background-color: #25D366;
+    color: #000000;
+    border: none;
+    border-radius: 5px;
+    padding: 15px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+  }
+  
+  /* Estilos para o modal */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+  }
+  
+  .modal-content {
+    background-color: #1e1e1e;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 10px;
+  }
+  
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
     font-weight: bold;
-    margin-top: 10px; /* Adiciona margem superior para espaço entre o texto e o botão */
-    display: inline-block;
-}
-
-.contact-button:hover {
-    background-color: #00ff00; /* Fundo verde ao passar o mouse */
-    color: #111; /* Texto escuro ao passar o mouse */
-}
-
-/* Adicionando responsividade para que o texto se ajuste melhor */
-@media (max-width: 768px) {
-    .container {
-        width: 95%; /* Ajusta a largura do container em telas menores */
-    }
-
-    .pergunta h3 {
-        font-size: 1.0em; /* Reduz o tamanho da fonte das perguntas em telas menores */
-    }
-
-    .resposta {
-        font-size: 0.9em; /* Reduz o tamanho da fonte das respostas em telas menores */
-    }
-}
-
-@media (max-width: 480px) {
-    .container {
-        width: 100%; /* Ocupa toda a largura da tela em dispositivos móveis */
-    }
-
-    .header h1 {
-        font-size: 1.3em; /* Ajusta o tamanho do título para telas pequenas */
-    }
-
-    .pergunta h3 {
-        font-size: 1.0em; /* Reduz o tamanho da fonte das perguntas para telas pequenas */
-    }
-
-    .resposta {
-        font-size: 0.8em; /* Ajusta o tamanho da fonte das respostas para telas pequenas */
-    }
-
-    #searchInput {
-        font-size: 0.9em; /* Ajusta o tamanho da fonte do campo de busca */
-    }
-}
-
-/* Ajuste para telas maiores */
-@media (min-width: 1024px) {
-    .header h1 {
-        font-size: 1.8em; /* Reduz o tamanho do título em telas maiores */
-    }
-
-    .pergunta h3 {
-        font-size: 1.0em; /* Reduz o tamanho da fonte das perguntas em telas maiores */
-    }
-
-    .resposta {
-        font-size: 0.9em; /* Reduz o tamanho da fonte das respostas em telas maiores */
-    }
-
-    #searchInput {
-        font-size: 0.9em; /* Reduz o tamanho da fonte do campo de busca em telas maiores */
-    }
-}
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  footer a {
+    color: #25D366;
+    text-decoration: none;
+  }
+  
+  footer a:hover {
+    text-decoration: underline;
