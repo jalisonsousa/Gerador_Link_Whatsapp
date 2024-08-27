@@ -1,85 +1,110 @@
-// Função principal que é executada quando o conteúdo da página é totalmente carregado
-document.addEventListener('DOMContentLoaded', function() {
-    // Detecta o idioma do navegador
-    const userLanguage = (navigator.language || navigator.userLanguage).substring(0, 2); // Obtém os primeiros 2 caracteres do idioma (ex: 'en', 'pt')
-    
-    // Define o idioma padrão se o idioma do navegador não for suportado
-    const supportedLanguages = ['en', 'pt'];
-    const language = supportedLanguages.includes(userLanguage) ? userLanguage : 'pt';
+function formatNumbers() {
+  var numbers = document.getElementById('numbers').value.split('\n');
+  var links = document.getElementById('links');
+  var message = document.getElementById('message').value.trim();
+  var copyButton = document.getElementById('copyButton');
+  links.innerHTML = '';
 
-    // Armazena o idioma no localStorage e aplica a tradução
-    localStorage.setItem('language', language);
-    applyTranslations(language);
-    loadFAQ(language);
+  var hasValidNumbers = false;
+  var invalidNumbers = [];
 
-    // Adiciona um listener para o seletor de idioma
-    document.querySelector('.language-selector').addEventListener('click', function(event) {
-        if (event.target.tagName === 'IMG') {
-            const newLanguage = event.target.alt === 'English' ? 'en' : 'pt';
-            changeLanguage(newLanguage);
+  // Dividindo os números em lotes de 25 para processamento incremental
+  var batchSize = 25;
+  var batches = [];
+  for (var i = 0; i < numbers.length; i += batchSize) {
+    batches.push(numbers.slice(i, i + batchSize));
+  }
+
+  // Função para processar cada lote de números
+  function processBatch(batch) {
+    for (var i = 0; i < batch.length; i++) {
+      var number = batch[i].trim().replace(/-/g, '');
+
+      // Ignora entradas em branco e que não sejam apenas números
+      if (number === '' || /\D/.test(number)) {
+        if (number !== '') { // Adiciona à lista de inválidos se não estiver em branco
+          invalidNumbers.push(number);
         }
-    });
-});
+        continue;
+      }
 
-// Função para aplicar traduções ao conteúdo da página
-function applyTranslations(language) {
-    fetch(`localidade/${language}.json`)
-        .then(response => response.json())
-        .then(translations => {
-            document.title = translations.title;
-            document.querySelector('#pageTitle').textContent = translations.title;
-            document.querySelector('#searchInput').placeholder = translations.searchPlaceholder;
-            document.querySelector('#footerText').innerHTML = translations.footerText;
-            document.querySelector('.contact-button').textContent = translations.contactButton;
-        })
-        .catch(error => console.error('Erro ao carregar traduções:', error));
+      if (/^\d{9,}$/.test(number)) {
+        var link = document.createElement('a');
+        var fullNumber = '+55' + number;
+        link.href = 'https://wa.me/' + fullNumber + '?text=' + encodeURIComponent(message);
+        link.target = '_blank';
+        link.textContent = fullNumber;
+        links.appendChild(link);
+        hasValidNumbers = true;
+      } else {
+        invalidNumbers.push(number);
+      }
+    }
+  }
+
+  // Processa cada lote de números
+  for (var j = 0; j < batches.length; j++) {
+    processBatch(batches[j]);
+  }
+
+  if (hasValidNumbers) {
+    copyButton.style.display = 'block';
+  } else {
+    copyButton.style.display = 'none';
+  }
+
+  if (invalidNumbers.length > 0) {
+    showAlert("Os seguintes números são inválidos: " + invalidNumbers.join(', '));
+  }
+
+  if (!hasValidNumbers && invalidNumbers.length === 0) {
+    showAlert("Por favor, insira pelo menos um número válido com 9 dígitos.");
+  }
 }
 
-// Função para carregar e exibir as perguntas e respostas
-function loadFAQ(language) {
-    fetch(`localidade/data-${language}.json`)
-        .then(response => response.json())
-        .then(data => {
-            const faqContainer = document.getElementById('faq');
-            faqContainer.innerHTML = ''; // Limpar o conteúdo existente
-            data.forEach((item, index) => {
-                const perguntaDiv = document.createElement('div');
-                perguntaDiv.classList.add('pergunta');
-                perguntaDiv.innerHTML = `
-                    <h3>Puzzle ${index + 1}) ${item.pergunta}</h3>
-                    <p class="resposta"><strong>R:</strong> ${item.resposta}</p>
-                `;
-                faqContainer.appendChild(perguntaDiv);
-            });
-        })
-        .catch(error => console.error('Erro ao carregar dados de FAQ:', error));
+function copyLinks() {
+  var links = document.getElementById('links').getElementsByTagName('a');
+  var linksArray = Array.from(links).map(link => link.href);
+  var textToCopy = '';
+
+  for (var i = 0; i < linksArray.length; i++) {
+    textToCopy += linksArray[i] + '\n\n';
+
+    // Adiciona uma linha de divisão a cada 12 links
+    if ((i + 1) % 12 === 0 && (i + 1) !== linksArray.length) {
+      textToCopy += '-----------------\n\n';
+    }
+  }
+
+  var tempTextArea = document.createElement('textarea');
+  tempTextArea.value = textToCopy;
+  document.body.appendChild(tempTextArea);
+  tempTextArea.select();
+  document.execCommand('copy');
+  document.body.removeChild(tempTextArea);
+
+  showAlert("Todos os links copiados para a área de transferência!, separado por lote de 12 ");
 }
 
-// Função para alterar o idioma da página
-function changeLanguage(lang) {
-    localStorage.setItem('language', lang);
-    applyTranslations(lang);
-    loadFAQ(lang);
+function showAlert(message) {
+  var modal = document.getElementById('alertModal');
+  var modalMessage = document.getElementById('modalMessage');
+  modalMessage.textContent = message;
+  modal.style.display = 'block';
+
+  // Fecha o modal após 5 segundos
+  setTimeout(closeAlertModal, 3000);
 }
 
-// Função para pesquisar perguntas no FAQ
-function searchperguntas() {
-    const input = normalizeString(document.getElementById('searchInput').value.toLowerCase());
-    const perguntas = document.querySelectorAll('.pergunta');
-
-    perguntas.forEach(pergunta => {
-        const perguntaText = normalizeString(pergunta.querySelector('h3').textContent.toLowerCase());
-
-        // Verifica se o texto da pergunta contém o termo de busca
-        if (perguntaText.includes(input) || input === '') {
-            pergunta.style.display = '';
-        } else {
-            pergunta.style.display = 'none';
-        }
-    });
+function closeAlertModal() {
+  var modal = document.getElementById('alertModal');
+  modal.style.display = 'none';
 }
 
-// Função para remover acentos e caracteres especiais de uma string
-function normalizeString(str) {
-    return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+// Fecha o modal se o usuário clicar fora do conteúdo do modal
+window.onclick = function (event) {
+  var modal = document.getElementById('alertModal');
+  if (event.target == modal) {
+    modal.style.display = 'none';
+  }
 }
