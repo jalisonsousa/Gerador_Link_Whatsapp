@@ -2,38 +2,38 @@
 <html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Links para Whatsapp</title>
-    <link rel="icon" href="icone.png" type="image/x-icon">
-    link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Links para Whatsapp</title>
+  <link rel="icon" href="icone.png" type="image/x-icon">
+  <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-    <div class="container">
-        <h1>Links para Whatsapp</h1>
-        <textarea id="numbers" placeholder="Insira os números sem o 9 na frente.
-    ex: 9212345678"></textarea>
-        <textarea id="message" placeholder="Insira uma mensagem padrão aqui."></textarea>
-        <button onclick="formatNumbers()">Gerar Link</button>
-        <button id="copyButton" onclick="copyLinks()" style="display: none;">Copiar Links</button>
-        <div id="links"></div>
-    </div>
+  <div class="container">
+    <h1>Links para Whatsapp</h1>
+    <textarea id="numbers" placeholder="Insira os números sem o 9 na frente.
+ex: 9212345678"></textarea>
+    <textarea id="message" placeholder="Insira uma mensagem padrão aqui."></textarea>
+    <button onclick="formatNumbers()">Gerar Link</button>
+    <button id="copyButton" onclick="copyLinks()" style="display: none;">Copiar Links</button>
+    <div id="links"></div>
+  </div>
 
-    <!-- Modal para alertas -->
-    <div id="alertModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeAlertModal()">&times;</span>
-            <p id="modalMessage"></p>
-        </div>
+  <!-- Modal para alertas -->
+  <div id="alertModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeAlertModal()">&times;</span>
+      <p id="modalMessage"></p>
     </div>
-    <footer>
-        <p style="text-align: center; font-size: 14px; color: #888;">&copy; 2024 Desenvolvido por <a
-                href="https://github.com/jalisonsousa" target="_blank"
-                style="color: #25D366; text-decoration: none;">Jalison Sousa</a>.
-        </p>
-    </footer>
-    <script src="script.js"></script>
+  </div>
+  <footer>
+    <p style="text-align: center; font-size: 14px; color: #888;">&copy; 2024 Desenvolvido por <a
+        href="https://github.com/jalisonsousa" target="_blank" style="color: #25D366; text-decoration: none;">Jalison
+        Sousa</a>.
+    </p>
+  </footer>
+  <script src="script.js"></script>
 </body>
 
 </html>
